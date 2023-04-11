@@ -1,0 +1,62 @@
+.chat-input{
+  position: relative;
+  display: flex;
+
+  .chat-input_smile-btn{
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    .chat-input_emoji-picker{
+      position: absolute;
+      bottom: 50px;
+      z-index: 1;
+    }
+  }
+
+  .anticon{
+    font-size: 18px;
+  }
+
+  .ant-btn-circle{
+    border: 0;
+    box-shadow: none;
+    color: #202020;
+    opacity: 40%;
+    transition: opacity 0.15s ease-in-out ;
+    color: #202020;
+    &:hover{
+      opacity: 1;
+      color: #202020;
+    }
+    &:after{
+      display: none;
+    }
+  }
+
+  .chat-input_actions {
+    display: flex;
+    align-items: center;
+    width: 90px;
+    justify-content: space-between;
+    margin-left: 20px;
+
+    .chat-input_actions-upload-btn{
+      input{
+      cursor: pointer;
+      }
+      &:hover{
+        cursor: pointer;
+        button{
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  input{
+    &:focus{
+      box-shadow: none;
+    }
+  }
+
+}

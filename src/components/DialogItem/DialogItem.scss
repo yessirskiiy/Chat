@@ -1,0 +1,110 @@
+.dialogs{
+
+  .dialogs_item-online {
+    .dialogs_item-avatar {
+      &::before {
+        display: block;
+        position: absolute;
+        bottom: -2px;
+        right: 0;
+        content: "";
+        background-color: #00c980;
+        border-radius: 30px;
+        width: 13px;
+        height: 13px;
+        border: 3px solid #fff;
+      }
+    }
+  }
+
+  .dialogs_item{
+    display: flex ;
+
+
+    &:hover {
+      background-color: #f3f7ff;
+    }
+
+    &-selected,
+    &-selected:hover{
+      background-color: #434aff;
+      color: #ffffff !important;
+    }
+
+
+    .dialogs_item-avatar{
+      position: relative;
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      img{
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+
+
+
+
+    .dialogs_item-info{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+      .dialogs_item-info-top{
+        display: flex;
+        b{
+          font-weight: 500;
+          font-size: 14px;
+          flex: 1;
+          margin-bottom: 6px;
+        }
+        span{
+          opacity: 50%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 100px;
+          height: 1.2em;
+          white-space: nowrap;
+          font-size: 14px;
+        }
+      }
+      .dialogs_item-info-bottom{
+        position: relative;
+        p {
+          opacity: 0.7;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 200px;
+          height: 1.2em;
+          white-space: nowrap;
+        }
+        .dialogs_item-info-bottom-count {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          background: #f46b6b;
+          color: #fff;
+          font-weight: bold;
+          width: 100%;
+          min-width: 18px;
+          max-width: 22px;
+          height: 18px;
+          border-radius: 30px;
+          font-size: 11px;
+          text-align: center;
+          line-height: 17px;
+          box-shadow: 0 0 0 3px #fff;
+          margin-bottom: 16px;
+        }
+        .message_icon-readed{
+          position: relative;
+          bottom: 35px;
+          left: 230px;
+          right: 0;
+        }
+      }
+    }
+  }
+}
