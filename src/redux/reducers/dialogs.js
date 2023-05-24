@@ -1,6 +1,6 @@
 const initialState = {
     items: [],
-    currentDialogId: null,
+    currentDialogId: window.location.pathname.split('dialog/')[1],
     isLoading: false,
 }
 
@@ -10,6 +10,16 @@ export default (state = initialState, {type, payload}) =>{
             return{
                 ...state,
             items: payload
+            };
+        case 'DIALOGS:LAST_MESSAGE_READED_STATUS':
+            return {
+                ...state,
+                items: state.items.map(dialog => {
+                    if (dialog._id === payload.dialogId) {
+                        dialog.lastMessage.read = true;
+                    }
+                    return dialog;
+                }),
             };
         case 'DIALOGS:SET_CURRENT_DIALOG_ID':
             return{

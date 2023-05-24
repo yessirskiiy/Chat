@@ -1,62 +1,66 @@
 import React from "react";
 import classNames from "classnames";
-
-
-import './DialogItem.scss'
-
 import format from 'date-fns/format'
-import isToday from "date-fns/isToday";
-import IconReaded from "../IconReaded";
-import Avatar from "../Avatar";
-import generateAvatarFromHash from "../../utils/helpers/generateAvatarFromHash"
+import isToday from "date-fns/is_today";
+import {IconReaded,Avatar} from "../index";
+import './DialogItem.scss'
+import { Link } from "react-router-dom"
 
 
 
-const getMessageTime = (created_at)=>{
-    if(isToday(new Date(created_at))){
-        return format(new Date(created_at),'HH:mm')
+const getMessageTime = createdAt => {
+    if (isToday(createdAt)) {
+        return format(createdAt, "HH:mm");
     } else {
-        return format(new Date(created_at),'dd.MM.yyyy')
+        return format(createdAt, "DD.MM.YYYY");
     }
-}
+};
 
+const renderLastMessage = (message, userId) => {
+    let text = '';
+    if (!message.text && message.attachments.length) {
+        text = 'прикрепленный файл';
+    } else {
+        text = message.text;
+    }
 
+    return `${message.user._id === userId ? 'Вы: ' : ''}${text}`;
+};
 
-
-
-const DialogItem =(
-    {
-        user ,
-        unreaded ,
-        isMe ,
-        created_at,
-        text,
-        currentDialogId,
-        onSelect,
-        _id }) =>
-    (
-            <div className={classNames('dialogs_item',{
-                'dialogs_item-online':user.isOnline,
-                "dialogs_item-selected" : currentDialogId === _id
+const DialogItem = ({
+                        _id,
+                        isMe,
+                        currentDialogId,
+                        lastMessage,
+                        userId
+}) => (
+    <Link to={`/dialog/${_id}`}>
+        <div
+            className={classNames("dialogs_item", {
+                "dialogs_item-online": lastMessage.user.last_seen,
+                "dialogs_item-selected": currentDialogId === _id
             })}
-            onClick={onSelect.bind(this, _id)}
-            >
-            <div className="dialogs_item-avatar"><Avatar user={user} /></div>
+        >
+            <div className="dialogs_item-avatar">
+                <Avatar user={lastMessage.user} />
+            </div>
             <div className="dialogs_item-info">
                 <div className="dialogs_item-info-top">
-                    <b>{user.fullname}</b>
-                    <span>
-                        {getMessageTime(created_at)}
-                    </span>
+                    <b>{lastMessage.user.fullname}</b>
+                    <span>{getMessageTime(lastMessage.createdAt)}</span>
                 </div>
                 <div className="dialogs_item-info-bottom">
-                    <p>{text}
-                    </p>
-                    {isMe && <IconReaded isMe={true} isReaded={false}/>}
-                    {unreaded > 0 && <div className='dialogs_item-info-bottom-count'>{unreaded > 9 ? "+9" : unreaded}</div>}
+                    <p>{renderLastMessage(lastMessage, userId)}</p>
+                    {isMe && <IconReaded isMe={isMe} isReaded={lastMessage.read} />}
+                    {lastMessage.unreaded > 0 && (
+                        <div className="dialogs_item-info-bottom-count">
+                            {lastMessage.unreaded > 9 ? "+9" : lastMessage.unreaded}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
-    );
+    </Link>
+);
 
 export default DialogItem;

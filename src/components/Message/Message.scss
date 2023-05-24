@@ -4,6 +4,11 @@
     max-width: 440px;
     margin-bottom: 15px;
     position: relative;
+  } ;
+  &:hover {
+    .message_icon-actions {
+      display: block;
+    }
   }
 
   .message_avatar {
@@ -45,15 +50,34 @@
     left: -25px;
   }
 
+  .message_icon-actions{
+    display: none;
+    transform: rotate(90deg);
+    position: absolute;
+    left: -31px;
+    top: -5px;
+  }
+
+  .message_info{
+    display: flex;
+    align-items: center;
+    text-align: right;
+    flex-direction: row-reverse;
+    position: relative;
+  }
+
   .message_attachments{
     display: flex;
     margin-bottom: 5px;
+    order: 1;
     .message_attachments-item{
       margin-right: 5px;
       cursor: pointer;
+      position: relative;
       img{
         width: 45px;
         height: 45px;
+        border-radius: 8px;
       }
     }
   }
@@ -63,19 +87,23 @@
   audio{
     display: none;
   }
-  width: 300px;
   .message_bubble{
     width: 250px;
     position: relative;
     overflow: hidden;
 }
   .message_audio{
+    padding: 15px;
+    background-color: #434aff;
+    border-radius: 12px 12px 0px 12px;
+    width: 250px;
+    overflow: hidden;
+    position: relative;
       .message_audio-info {
-        justify-content: space-between;
         display: flex;
         align-items: center;
+        justify-content: space-between;
         position: relative;
-
         .message_audio-btn {
           button {
             outline: none;
@@ -121,10 +149,8 @@
   }
 
   .message_avatar {
-    img {
       margin-right: 0;
       margin-left: 13px;
-    }
   }
   .message_bubble {
     background: #e8e5e5;

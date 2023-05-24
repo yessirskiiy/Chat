@@ -1,9 +1,9 @@
 import React from "react";
 import { Form,  Input } from "antd";
 
-import  validateField  from "../../utils/helpers/validateField";
+import {validateField}  from "../../utils/helpers";
 
-const FormField = ({
+const Index = ({
                        name,
                        placeholder,
                        type,
@@ -32,4 +32,4 @@ const FormField = ({
     );
 };
 
-export  default FormField;
+export  default Index;

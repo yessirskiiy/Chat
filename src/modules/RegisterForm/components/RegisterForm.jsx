@@ -2,8 +2,8 @@ import React from "react";
 import { Form } from "antd";
 import { Link } from "react-router-dom";
 
-import  {Button, Block}  from "../../../components";
-import FormField from "../../../components/FormField/FormField";
+import  {Button, Block, FormField}  from "../../../components";
+
 
 const success = false;
 
@@ -80,7 +80,7 @@ const RegisterForm = props => {
                                 Зарегистрироваться
                             </Button>
                         </Form.Item>
-                        <Link className="auth_register-link" to="/">
+                        <Link className="auth_register-link" to="/signin">
                             Войти в аккаунт
                         </Link>
                     </Form>

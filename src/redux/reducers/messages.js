@@ -1,10 +1,15 @@
 const initialState = {
-    items: null,
+    items: [],
     isLoading: false,
 }
 
 export default (state = initialState, {type, payload}) =>{
     switch (type) {
+        case 'MESSAGES:ADD_MESSAGE':
+            return {
+                ...state,
+                items: [...state.items, payload],
+            };
         case 'MESSAGES:SET_ITEMS':
             return{
                 ...state,
@@ -15,6 +20,11 @@ export default (state = initialState, {type, payload}) =>{
             return{
                 ...state,
                 isLoading: payload
+            };
+        case 'MESSAGES:REMOVE_MESSAGE':
+            return {
+                ...state,
+                items: state.items.filter(message => message._id !== payload),
             };
         default:
             return state;

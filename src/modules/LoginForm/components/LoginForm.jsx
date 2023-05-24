@@ -14,7 +14,7 @@ const LoginForm = props => {
         handleBlur,
         handleSubmit,
         isValid,
-        isSubmitting
+        isSubmitting,
     } = props;
     return (
         <div>
@@ -64,7 +64,7 @@ const LoginForm = props => {
                             Войти в аккаунт
                         </Button>
                     </Form.Item>
-                    <Link className="auth_register-link" to="/register">
+                    <Link className="auth_register-link" to="/signup">
                         Зарегистрироваться
                     </Link>
                 </Form>
